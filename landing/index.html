@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>8 Niche Profit Pack</title>
+<meta name="theme-color" content="#FFD60A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Single deliberate light look: clean print-shop white, yellow as the action color
+   and highlighter; C/M/Y appear only as print-shop marks. */
+:root{
+  color-scheme: light;
+  --bg:#F4F5F7;
+  --bg-2:#FFFFFF;
+  --deep:#FFFFFF;
+  --card:#FFFFFF;
+  --card-2:#F7F7F4;
+  --line:#E2E4E8;
+  --text:#111215;
+  --muted:#555A63;
+  --dim:#7C818A;
+  --yellow:#FFD60A;
+  --yellow-hi:#FFE14D;
+  --yellow-wash:#FFF6CC;
+  --gold:#9A6A00;
+  --cyan:#22C3EE;
+  --magenta:#FF3D8B;
+  --green:#138A48;
+  --red:#D63B30;
+  --display:'Big Shoulders Display','Arial Narrow','Helvetica Neue',sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:900;line-height:.98;letter-spacing:.005em;text-transform:uppercase;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:600px;margin:0 auto;padding-inline:20px}
+.wide{max-width:1080px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sec{padding-block:64px}
+.sec-head{display:grid;gap:12px;text-align:center;margin-bottom:32px}
+.sec-head h2{font-size:clamp(40px,11vw,60px)}
+.sec-head p{color:var(--muted);max-width:44ch;margin-inline:auto}
+.sec-head p strong{color:var(--text)}
+.on-ink{background:var(--deep);background-image:radial-gradient(rgba(17,18,21,.07) 1px,transparent 1.5px);background-size:9px 9px;border-block:1px solid var(--line)}
+.hl{color:var(--gold)}
+
+/* CMYK calibration strip */
+.cmyk{display:flex;gap:4px;justify-content:center}
+.cmyk i{width:14px;height:6px;border-radius:2px}
+.cmyk i:nth-child(1){background:var(--cyan)}.cmyk i:nth-child(2){background:var(--magenta)}.cmyk i:nth-child(3){background:var(--yellow)}.cmyk i:nth-child(4){background:#111215}
+
+/* Buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;min-height:62px;padding:16px 24px;border-radius:12px;background:var(--yellow);color:#0A0A0A;font:900 24px/1 var(--display);letter-spacing:.03em;text-transform:uppercase;text-decoration:none;box-shadow:0 12px 30px -10px rgba(255,214,10,.55),inset 0 -3px 0 rgba(0,0,0,.2);transition:transform .15s ease,box-shadow .15s ease,background .15s;-webkit-tap-highlight-color:transparent;position:relative;overflow:hidden}
+.btn:hover{background:var(--yellow-hi);transform:translateY(-2px)}
+.btn:active{transform:translateY(1px)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:sheen 3.6s ease-in-out infinite}
+@keyframes sheen{0%,60%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.btn small{font:600 14px/1 var(--mono);padding:6px 8px;border-radius:6px;background:rgba(0,0,0,.12);letter-spacing:0}
+.fine{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font:500 12px/1.3 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.fine span{display:inline-flex;align-items:center;gap:6px}
+.fine span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* Top ribbon */
+.ribbon{background:var(--yellow);color:#0A0A0A;overflow:hidden;white-space:nowrap;font:900 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding-block:10px;padding-top:calc(10px + env(safe-area-inset-top,0px))}
+.ribbon-track{display:inline-flex;animation:ticker 38s linear infinite}
+.ribbon-track span{padding-right:28px}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* Hero */
+.hero{padding-block:32px 56px;position:relative;background:radial-gradient(120% 60% at 50% 0%,rgba(255,214,10,.22),transparent 60%)}
+.hero-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 22px 28px;text-align:center;box-shadow:0 30px 60px -30px rgba(17,18,21,.18)}
+.reg{position:absolute;width:22px;height:22px;color:#C5C9D0}
+.reg.tl{top:12px;left:12px}.reg.br{bottom:12px;right:12px}
+.hero-top{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:14px 0 22px;color:var(--muted)}
+.hero-top i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(19,138,72,.5);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(19,138,72,0)}100%{box-shadow:0 0 0 0 rgba(19,138,72,0)}}
+.hero h1{font-family:var(--body);font-weight:800;text-transform:none;font-size:clamp(28px,7.6vw,46px);line-height:1.12;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:var(--text);white-space:nowrap;background:linear-gradient(transparent 58%,var(--yellow) 58%,var(--yellow) 92%,transparent 92%);padding-inline:.08em}
+.hero-sub{margin-top:18px;font:600 13px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero-note{margin-top:24px;padding:20px 18px;border-radius:14px;background:var(--bg);border:1px dashed #CDD1D7;color:#33363C;font-size:16px}
+.money{display:inline-block;margin-top:14px;padding:12px 20px;border-radius:999px;background:var(--yellow);border:0;color:#111215;font:900 20px/1 var(--display);letter-spacing:.05em;text-transform:uppercase}
+.hero .btn{margin-top:24px}
+
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 14px;text-align:left}
+.stat b{display:block;font:900 clamp(22px,7.4vw,30px)/1 var(--display);overflow-wrap:break-word;text-transform:uppercase}
+.stat b.hl{color:var(--gold)}
+.stat span{display:block;margin-top:8px;font:600 10.5px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.stats-cap{text-align:center;margin-top:14px;font:500 12px/1.4 var(--mono);color:var(--dim);letter-spacing:.04em}
+
+/* Pack galleries */
+.pack{padding-block:40px 34px;border-top:1px solid var(--line);background:var(--bg-2)}
+.pack-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px}
+.pack-head > div:first-child{flex:1;min-width:0}
+.pack-head .eyebrow{display:block;margin-bottom:8px}
+.pack-head h3{font-size:clamp(30px,9vw,48px);overflow-wrap:break-word}
+.pack-count{text-align:right;flex-shrink:0}
+.pack-count b{display:block;font:900 40px/1 var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
+.pack-count span{font:600 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--dim)}
+.rail{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.rail + .rail{margin-top:10px}
+.track{display:flex;gap:10px;width:max-content;animation:slide 70s linear infinite;will-change:transform}
+.rail.rev .track{animation-direction:reverse}
+@keyframes slide{to{transform:translate3d(-50%,0,0)}}
+.tile{position:relative;flex:0 0 auto;width:140px;aspect-ratio:1;margin:0;border-radius:10px;overflow:hidden;background-color:#17181B;background-image:radial-gradient(120% 90% at 50% 20%,#26282D,#141518 70%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;border:1px solid var(--line)}
+.tile img{width:100%;height:100%;object-fit:contain;padding:10px}
+.tile{border-color:#23252A}
+.tile figcaption{position:absolute;left:8px;right:8px;bottom:8px;display:flex;justify-content:space-between;gap:6px;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,.94);border:1px solid var(--line);font:600 9.5px/1.2 var(--mono);color:var(--dim);letter-spacing:.03em}
+.tile figcaption b{color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile.ok figcaption{display:none}
+
+/* Problem / solution lists */
+.rows{display:grid;gap:10px}
+.row{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.row .mk{flex:0 0 28px;height:28px;border-radius:8px;display:grid;place-items:center;font:800 15px/1 var(--body)}
+.mk.no{background:#FDECEA;color:var(--red)}
+.mk.yes{background:var(--yellow);color:#111215}
+.row strong{display:block;font:900 21px/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+.row span{font-size:15px;line-height:1.5;color:var(--muted)}
+.lead{text-align:center;color:var(--muted);max-width:44ch;margin:0 auto 28px}
+.lead strong{color:var(--text)}
+.punch{margin-top:24px;padding:24px 20px;border-radius:16px;border:2px solid var(--yellow);background:var(--yellow-wash);text-align:center;font:900 28px/1.1 var(--display);text-transform:uppercase}
+
+.intro{background:var(--yellow);color:#0A0A0A;border-radius:18px;padding:26px 20px;text-align:center;margin-bottom:24px}
+.intro small{font:600 11px/1 var(--mono);letter-spacing:.14em;opacity:.7}
+.intro strong{display:block;margin:10px 0 8px;font:900 38px/.95 var(--display);text-transform:uppercase}
+.intro span{font:600 12px/1.2 var(--mono);letter-spacing:.1em}
+.body-c{text-align:center;color:var(--muted);max-width:46ch;margin:0 auto 28px}
+.body-c u{text-decoration:none;color:var(--text);font-weight:700;box-shadow:inset 0 -.4em 0 var(--yellow)}
+
+/* Niches */
+.niches{display:grid;gap:10px}
+.niche{display:grid;grid-template-columns:52px 1fr;gap:4px 14px;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.niche .num{grid-row:span 2;font:900 40px/.9 var(--display);color:var(--gold)}
+.niche h4{font-size:24px}
+.niche p{font-size:15px;color:var(--muted);line-height:1.5}
+
+/* Comparison */
+.cmp{margin-top:56px}
+.cmp h3{text-align:center;font-size:clamp(38px,10vw,54px);margin-bottom:20px}
+.cmp-t{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.cmp-r{display:grid;grid-template-columns:1fr 1fr}
+.cmp-r + .cmp-r{border-top:1px solid var(--line)}
+.cmp-r > div{padding:16px 12px;font-size:14px;line-height:1.4;text-align:center}
+.cmp-r > div:first-child{background:var(--bg);color:var(--dim);border-right:1px solid var(--line)}
+.cmp-r > div:last-child{font-weight:700;color:var(--text)}
+.cmp-r.h > div{font:600 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding-block:14px}
+.cmp-r.h > div:last-child{background:var(--yellow);color:#0A0A0A}
+.cmp-r i{display:block;font-style:normal;font-weight:900;margin-bottom:4px}
+.cmp-r .x{color:var(--red)}.cmp-r .v{color:var(--gold)}
+
+/* Bonuses */
+.bonuses{display:grid;gap:16px}
+.bonus{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.bonus-tag{position:absolute;top:0;right:0;background:var(--yellow);color:#0A0A0A;font:600 11px/1 var(--mono);letter-spacing:.08em;padding:9px 12px;border-bottom-left-radius:12px}
+.bonus-in{padding:24px 20px 18px}
+.bonus h4{font-size:30px;padding-right:90px}
+.bonus h4 small{display:block;margin-top:6px;font:600 14px/1.3 var(--body);color:var(--muted);text-transform:none;letter-spacing:0}
+.bonus p{margin:12px 0 14px;color:var(--muted);font-size:15px}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ticks li{position:relative;padding-left:26px;font-size:15px;color:var(--text)}
+.ticks li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:900}
+.bonus-media{padding:0 20px 18px}
+.bonus-media img{border-radius:10px;border:1px solid var(--line);width:100%}
+.bonus-rail{padding-bottom:18px}
+.bonus-rail .tile{width:112px}
+.val{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:1px solid var(--line);background:var(--bg-2)}
+.val s{font:500 14px/1 var(--mono);color:var(--dim)}
+.val small{font:600 10.5px/1 var(--mono);letter-spacing:.1em;color:var(--dim);margin-right:8px}
+.val b{font:900 26px/1 var(--display);color:var(--green);letter-spacing:.04em}
+.total{margin-top:6px;padding:22px;border:2px dashed var(--yellow);background:var(--card);border-radius:16px;text-align:center}
+.total small{font:600 11px/1 var(--mono);letter-spacing:.12em;color:var(--muted)}
+.total strong{display:block;margin:8px 0 6px;font:900 60px/1 var(--display)}
+.total span{color:var(--gold);font-weight:700}
+
+/* Demo */
+.laptop{max-width:520px;margin:0 auto;padding-inline:18px}
+.screen{background:#111215;border:1px solid #2F333A;border-radius:14px 14px 0 0;padding:10px;box-shadow:0 30px 60px -25px rgba(17,18,21,.35)}
+.cam{width:6px;height:6px;border-radius:50%;background:#333;margin:0 auto 8px}
+.view{aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:var(--bg-2);position:relative}
+.view img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover}
+.base{height:14px;margin-inline:-18px;border-radius:0 0 16px 16px;background:linear-gradient(#C9CCD2,#9EA2A9)}
+.folders{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr;font:500 11px/1.2 var(--mono);color:var(--text)}
+.folders header{display:flex;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--card)}
+.folders header i{width:8px;height:8px;border-radius:50%;background:#D5D8DD}
+.folders header span{margin-left:8px;color:var(--dim)}
+.folders ul{list-style:none;margin:0;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-content:start}
+.folders li{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;background:var(--bg)}
+.folders li::before{content:"";width:16px;height:12px;border-radius:2px;background:var(--yellow);flex-shrink:0}
+.folders li em{margin-left:auto;font-style:normal;color:var(--dim)}
+
+/* Offer */
+.offer{background:var(--card);border:2px solid var(--yellow);border-radius:24px;overflow:hidden;box-shadow:0 0 0 6px rgba(255,214,10,.18),0 40px 80px -40px rgba(17,18,21,.25)}
+.offer-top{padding:34px 22px 22px;text-align:center;background:var(--card-2);border-bottom:1px solid var(--line)}
+.offer-top h2{font-size:clamp(52px,15vw,76px)}
+.offer-top p{margin-top:8px;color:var(--muted)}
+.flag{background:var(--yellow);color:#0A0A0A;text-align:center;font:600 12px/1 var(--mono);letter-spacing:.12em;padding:12px}
+.stack{padding:10px 22px 4px}
+.stack-r{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px dashed var(--line);font-size:15px;font-weight:600}
+.stack-r span:first-child{display:flex;gap:10px;align-items:flex-start}
+.stack-r span:first-child::before{content:"✓";color:var(--gold);font-weight:900}
+.stack-r s{color:var(--dim);font:500 14px/1 var(--mono);white-space:nowrap}
+.stack-t{display:flex;justify-content:space-between;padding:16px 0 18px;font:600 12px/1 var(--mono);letter-spacing:.08em;color:var(--muted)}
+.stack-t s{font-size:15px}
+.price{padding:26px 22px 30px;text-align:center;border-top:1px solid var(--line)}
+.pill{display:inline-block;padding:7px 12px;border-radius:6px;background:#E3F4EA;color:var(--green);font:600 12px/1 var(--mono);letter-spacing:.08em}
+.big{margin:14px 0 4px;font:900 120px/.85 var(--display);letter-spacing:-.01em}
+.big sup{font-size:.4em;vertical-align:1.1em;margin-right:4px;color:var(--gold)}
+.once{display:block;font:600 12px/1 var(--mono);letter-spacing:.14em;color:var(--muted);margin-bottom:20px}
+
+/* After purchase steps */
+.steps{list-style:none;margin:22px 0 0;padding:18px 16px;display:grid;gap:14px;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:14px;counter-reset:st}
+.steps-t{margin-top:22px;text-align:center;font:600 11px/1 var(--mono);letter-spacing:.12em;color:var(--muted)}
+.steps-t + .steps{margin-top:10px}
+.steps li{display:grid;grid-template-columns:32px 1fr;gap:2px 12px;counter-increment:st}
+.steps li::before{content:counter(st);grid-row:span 2;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:#111215;font:900 18px/1 var(--display)}
+.steps b{font-size:15px;font-weight:700}
+.steps span{font-size:14px;color:var(--muted);line-height:1.45}
+
+/* FAQ */
+.faq{display:grid;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.faq details[open]{border-color:var(--yellow);box-shadow:0 0 0 3px var(--yellow-wash)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px;font:700 17px/1.3 var(--body);-webkit-tap-highlight-color:transparent}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:#111215;font:500 22px/1 var(--body);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details > div{padding:0 18px 20px;color:var(--muted);font-size:15px}
+.faq details > div strong{color:var(--text)}
+
+.works{text-align:center;padding-block:8px 48px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.chips span{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:600;font-size:14px}
+.chips span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.works p{margin-top:12px;font-size:13px;color:var(--dim)}
+
+/* Guarantee */
+.guar{display:grid;gap:18px;justify-items:center;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 22px;position:relative;overflow:hidden}
+.guar::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--cyan) 0 25%,var(--magenta) 25% 50%,var(--yellow) 50% 75%,#111215 75%)}
+.seal{width:96px;height:96px;border-radius:50%;border:2px dashed var(--yellow);display:grid;place-items:center;text-align:center;color:var(--gold);font:900 40px/1 var(--display)}
+.seal small{display:block;font:600 9px/1 var(--mono);letter-spacing:.12em;margin-top:2px}
+.guar h3{font-size:34px}
+.guar p{color:var(--muted);font-size:15px}
+.guar p b{color:var(--text)}
+.guar p b.hl{color:var(--gold)}
+.ssl{margin-top:14px;text-align:center;font:600 11px/1 var(--mono);letter-spacing:.12em;color:var(--dim)}
+
+.final{padding-block:10px 40px}
+footer{padding:28px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;font:500 12px/1.5 var(--mono);color:var(--dim);border-top:1px solid var(--line)}
+footer .cmyk{margin-bottom:12px}
+
+/* Sticky CTA (phones) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(255,255,255,.96);box-shadow:0 -10px 30px -12px rgba(17,18,21,.25);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);color:var(--text);transform:translateY(110%);transition:transform .35s ease}
+.sticky.show{transform:none}
+.sticky small{display:block;font:600 10px/1 var(--mono);letter-spacing:.12em;color:var(--gold)}
+.sticky s{font:500 12px/1 var(--mono);color:var(--dim);margin-right:6px}
+.sticky b{font:900 32px/1 var(--display)}
+.sticky .btn{min-height:50px;padding:12px 20px;font-size:19px;flex-shrink:0}
+
+@media (min-width:900px){
+  .wrap{max-width:680px}
+  .wide{max-width:1080px}
+  .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:center}
+  .hero-card{padding:48px 44px 40px}
+  .stats{margin-top:0}
+  .niches{grid-template-columns:1fr 1fr}
+  .bonuses{grid-template-columns:1fr 1fr;align-items:start}
+  .bonuses .total{grid-column:1 / -1}
+  .tile{width:176px}
+  .sticky{display:none}
+  footer{padding-bottom:40px}
+}
+@media (max-width:360px){
+  .wrap{padding-inline:16px}
+  .hero-card{padding:30px 16px 22px}
+  .big{font-size:100px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ribbon-track,.track,.btn::after,.hero-top i{animation:none}
+  .rail{overflow-x:auto}
+}
+</style>
+
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1608923080101822');fbq('track','PageView');
+</script>
+
+<div class="ribbon" aria-label="Limited time offer: lifetime access for a one-time price">
+  <div class="ribbon-track" aria-hidden="true">
+    <span>Limited time offer: lifetime access for a one-time price •</span><span>Limited time offer: lifetime access for a one-time price •</span><span>Limited time offer: lifetime access for a one-time price •</span><span>Limited time offer: lifetime access for a one-time price •</span>
+    <span>Limited time offer: lifetime access for a one-time price •</span><span>Limited time offer: lifetime access for a one-time price •</span><span>Limited time offer: lifetime access for a one-time price •</span><span>Limited time offer: lifetime access for a one-time price •</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap wide hero-grid">
+    <div class="hero-card">
+      <svg class="reg tl" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M11 0v22M0 11h22"/></svg>
+      <svg class="reg br" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M11 0v22M0 11h22"/></svg>
+      <div class="cmyk" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="hero-top"><i></i>8 Niche Profit Pack</div>
+      <h1>The pack with <em>20,000+</em> ready-to-use designs you won’t find on Google, Pinterest, or Canva — and it’s already putting up to <em>$5,000 a week</em> in the pockets of people using it.</h1>
+      <p class="hero-sub">Curated, Organized, and Ready to Print.</p>
+      <div class="hero-note">
+        <p>Stop digging through “junk” in massive Mega Packs. Get an elite arsenal of High-Res files ready for instant upload. The goal isn’t to fill your hard drive — it is to:</p>
+        <span class="money">Put money in your pocket.</span>
+      </div>
+      <a class="btn cta" href="#offer">Get instant access <small>$27</small></a>
+      <div class="fine"><span>One-time payment</span><span>Instant download</span></div>
+    </div>
+    <div>
+      <div class="stats">
+        <div class="stat"><b class="hl">20,000+</b><span>Total assets</span></div>
+        <div class="stat"><b>Lifetime</b><span>Access</span></div>
+        <div class="stat"><b>Commercial</b><span>License</span></div>
+        <div class="stat"><b class="hl">PNG / DTF</b><span>Format</span></div>
+      </div>
+      <p class="stats-cap">Organized by Niche • High Resolution • Instant Download</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pack" data-pack="1"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #01</span><h3>Car &amp; Automotive</h3></div><div class="pack-count"><b>4,558</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+  <section class="pack" data-pack="2"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #02</span><h3>Halftone Collection</h3></div><div class="pack-count"><b>2,178</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+  <section class="pack" data-pack="3"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #03</span><h3>Brand Aesthetics</h3></div><div class="pack-count"><b>2,862</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+
+  <section class="sec on-ink">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">The Problem</span><h2>The “Mega Pack” Nightmare</h2></div>
+      <p class="lead">Sick of digging through <strong>“Digital Trash”</strong> just to find one good design?<br><br>If you run a Print-on-Demand (POD) business or a DTF print shop, you know the struggle. You buy a “1 Million Designs” bundle, and what do you actually get?</p>
+      <div class="rows">
+        <div class="row"><span class="mk no">✕</span><div><strong>Total Chaos</strong><span>Terabytes of files with weird names that crash your hard drive.</span></div></div>
+        <div class="row"><span class="mk no">✕</span><div><strong>Low Quality</strong><span>Pixelated JPEGs that look terrible on a shirt.</span></div></div>
+        <div class="row"><span class="mk no">✕</span><div><strong>Outdated Junk</strong><span>Designs from 2010 that nobody wants to wear.</span></div></div>
+        <div class="row"><span class="mk no">✕</span><div><strong>Wasted Time</strong><span>Hours lost just trying to unzip files and organize folders.</span></div></div>
+      </div>
+      <p class="punch">You don’t need more files.<br><span class="hl">You need better files.</span><br>And you need them organized.</p>
+    </div>
+  </section>
+
+  <section class="pack" data-pack="4"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #04</span><h3>Streetwear Collection</h3></div><div class="pack-count"><b>1,811</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">The Solution</span><h2>Professional Efficiency</h2></div>
+      <div class="intro"><small>INTRODUCING</small><strong>The Premium Design Pack</strong><span>BUILT FOR SPEED. BUILT FOR SELLERS.</span></div>
+      <p class="body-c">We stripped away the clutter. We focused purely on what works in the US market right now.<br><br>This isn’t just a collection of images; <u>it’s a toolkit to help you find your next bestseller fast.</u></p>
+      <div class="rows">
+        <div class="row light"><span class="mk yes">✓</span><div><strong>Smart Download</strong><span>Split folders. Download only the niche you need, without clogging your storage.</span></div></div>
+        <div class="row light"><span class="mk yes">✓</span><div><strong>Zero Friction</strong><span>Find the exact style you want in seconds.</span></div></div>
+        <div class="row light"><span class="mk yes">✓</span><div><strong>Print-Ready</strong><span>High-Resolution PNGs with Transparent Backgrounds (300 DPI).</span></div></div>
+        <div class="row light"><span class="mk yes">✓</span><div><strong>DTF Optimized</strong><span>Perfect for Direct-to-Film transfers, Etsy, Shopify, and Print Shops.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pack" data-pack="5"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #05</span><h3>NBA Basketball</h3></div><div class="pack-count"><b>2,571</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+  <section class="pack" data-pack="6"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #06</span><h3>Cartoon Supreme</h3></div><div class="pack-count"><b>4,526</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+  <section class="pack" data-pack="7"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #07</span><h3>Bootleg &amp; Vintage</h3></div><div class="pack-count"><b>870</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+  <section class="pack" data-pack="8"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #08</span><h3>Women’s Lifestyle</h3></div><div class="pack-count"><b>822</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><div class="rail rev"><div class="track"></div></div></section>
+
+  <section class="sec">
+    <div class="wrap wide">
+      <div class="sec-head"><span class="eyebrow">What’s inside?</span><h2>The 8 Hottest Niches Selling Right Now</h2></div>
+      <div class="niches">
+        <div class="niche"><span class="num">01</span><h4>Car Culture</h4><p>JDM, muscle cars, and automotive lifestyle designs for passionate enthusiasts.</p></div>
+        <div class="niche"><span class="num">02</span><h4>Halftone Mastery</h4><p>Designs utilizing halftone screens — essential for that professional screen-print look.</p></div>
+        <div class="niche"><span class="num">03</span><h4>Brand Aesthetics</h4><p>Clean, logo-style, and corporate branding graphics for a modern look.</p></div>
+        <div class="niche"><span class="num">04</span><h4>Streetwear Aesthetics</h4><p>Edgy, urban, and minimalist designs that fit perfectly with current fashion trends.</p></div>
+        <div class="niche"><span class="num">05</span><h4>NBA-Inspired</h4><p>Basketball culture and sports designs that tap directly into the massive fan market.</p></div>
+        <div class="niche"><span class="num">06</span><h4>Cartoon Supreme</h4><p>Commercial-grade illustrations and vibrant characters ready for merchandise.</p></div>
+        <div class="niche"><span class="num">07</span><h4>Bootleg &amp; Vintage Style</h4><p>The “90s Rap Tee” aesthetic remix. High demand and perfect for heavy DTF prints.</p></div>
+        <div class="niche"><span class="num">08</span><h4>Women’s Lifestyle</h4><p>Trendy, feminine designs curated for the demographic that buys the most clothing online.</p></div>
+      </div>
+
+      <div class="cmp wrap" style="padding-inline:0">
+        <h3>The Difference</h3>
+        <div class="cmp-t">
+          <div class="cmp-r h"><div>The “Other” Packs</div><div>Premium Design Pack</div></div>
+          <div class="cmp-r"><div><i class="x">✕</i>500GB of disorganized mess</div><div><i class="v">✓</i>Clean, lightweight folder structure</div></div>
+          <div class="cmp-r"><div><i class="x">✕</i>Impossible to browse</div><div><i class="v">✓</i>Find what you need in seconds</div></div>
+          <div class="cmp-r"><div><i class="x">✕</i>90% fillers and clipart</div><div><i class="v">✓</i>100% Curated &amp; Current Styles</div></div>
+          <div class="cmp-r"><div><i class="x">✕</i>Requires editing / removing BG</div><div><i class="v">✓</i>Transparent PNGs — Just Drag &amp; Drop</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec on-ink">
+    <div class="wrap wide">
+      <div class="sec-head"><span class="eyebrow">Limited time offer</span><h2>Exclusive Bonuses</h2><p>To ensure you start selling as fast as possible, we’ve included these gifts:</p></div>
+      <div class="bonuses">
+        <article class="bonus">
+          <span class="bonus-tag">BONUS #01</span>
+          <div class="bonus-in"><h4>“Top Trends This Week” Folder<small>148 designs</small></h4>
+            <p>A curated drop of 148 trend-aligned designs built around what’s performing right now across the biggest U.S. aesthetics (TikTok/IG style winners).</p>
+            <ul class="ticks"><li>Print-ready transparent PNGs</li><li>Modern best-seller look</li><li>Launch-ready instantly</li></ul></div>
+          <div class="rail bonus-rail"><div class="track" id="bonus-track"></div></div>
+          <div class="val"><div><small>VALUE</small><s>$49.00</s></div><b>FREE</b></div>
+        </article>
+        <article class="bonus">
+          <span class="bonus-tag">BONUS #02</span>
+          <div class="bonus-in"><h4>“Done-For-You Listing Vault”<small>Etsy + Shopify</small></h4>
+            <p>This bonus alone can pay for the pack. You get a complete copy-and-paste listing system:</p>
+            <ul class="ticks"><li>240 High-Converting Titles (30/niche)</li><li>80 Bullet Descriptions (Conversion-focused)</li><li>16 Product Description Templates</li><li>8 Brand-Aesthetic Copy Blocks</li></ul></div>
+          <div class="val"><div><small>VALUE</small><s>$97.00</s></div><b>FREE</b></div>
+        </article>
+        <article class="bonus">
+          <span class="bonus-tag">BONUS #03</span>
+          <div class="bonus-in"><h4>“Premium Mockup Vault”<small>POD/DTF Ready</small></h4>
+            <p>Designs sell faster when they look premium. Instantly upgrade your store’s perceived value.</p>
+            <ul class="ticks"><li>120 Premium Mockups (Streetwear, Flatlays)</li><li>10 Best-Seller Listing Image Layouts</li><li>Canva Templates Included</li></ul></div>
+          <div class="bonus-media"><img src="images/mockup.webp" alt="Mockup preview" data-hide-on-error></div>
+          <div class="val"><div><small>VALUE</small><s>$147.00</s></div><b>FREE</b></div>
+        </article>
+        <article class="bonus">
+          <span class="bonus-tag">BONUS #04</span>
+          <div class="bonus-in"><h4>“Pricing &amp; Profit Calculator”<small>DTF + POD</small></h4>
+            <p>Scale with numbers, not guesses. A simple tool that helps you calculate:</p>
+            <ul class="ticks"><li>Ideal selling price &amp; Profit targets</li><li>Profit per sale after fees</li><li>Basic ad break-even points</li></ul></div>
+          <div class="val"><div><small>VALUE</small><s>$67.00</s></div><b>FREE</b></div>
+        </article>
+        <div class="total"><small>TOTAL BONUS VALUE</small><strong>$360.00</strong><span>Yours 100% FREE when you join today.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><h2>Stop guessing.<br><span class="hl">See exactly what you get.</span></h2><p>No mystery boxes or messy folders. Get instant access to a <strong>clean, organized dashboard</strong> designed for speed.</p></div>
+      <div class="laptop">
+        <div class="screen"><div class="cam"></div>
+          <div class="view" id="demo-view">
+            <img src="images/demo.webp" alt="Product sneak peek" id="demo-gif">
+            <div class="folders" aria-hidden="true">
+              <header><i></i><i></i><i></i><span>/ 8-niche-profit-pack</span></header>
+              <ul>
+                <li>01 Car &amp; Auto<em>4,558</em></li><li>02 Halftone<em>2,178</em></li>
+                <li>03 Brand<em>2,862</em></li><li>04 Streetwear<em>1,811</em></li>
+                <li>05 NBA<em>2,571</em></li><li>06 Cartoon<em>4,526</em></li>
+                <li>07 Bootleg<em>870</em></li><li>08 Women’s<em>822</em></li>
+                <li>Bonus Trends<em>148</em></li><li>Mockups<em>120</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="base"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="offer" style="padding-top:8px">
+    <div class="wrap">
+      <div class="offer">
+        <div class="offer-top"><h2>Full Access <span class="hl">Bundle</span></h2><p>Everything you need to scale your store.</p></div>
+        <div class="flag">EVERYTHING INCLUDED</div>
+        <div class="stack">
+          <div class="stack-r"><span>8 Niche Packs (20k+ Designs)</span><s>$197.00</s></div>
+          <div class="stack-r"><span>Commercial License (Lifetime)</span><s>$97.00</s></div>
+          <div class="stack-r"><span>Bonus #1: Top Trends This Week Folder</span><s>$49.00</s></div>
+          <div class="stack-r"><span>Bonus #2: Done-For-You Listing Vault</span><s>$97.00</s></div>
+          <div class="stack-r"><span>Bonus #3: Premium Mockup Vault</span><s>$147.00</s></div>
+          <div class="stack-r"><span>Bonus #4: Pricing &amp; Profit Calculator</span><s>$67.00</s></div>
+          <div class="stack-t"><span>TOTAL REAL VALUE</span><s>$654.00</s></div>
+        </div>
+        <div class="price">
+          <span class="pill">✓ LAUNCH PRICE</span>
+          <div class="big"><sup>$</sup>27</div>
+          <span class="once">SINGLE ONE-TIME PAYMENT</span>
+          <a class="btn cta" href="https://pay.hotmart.com/P102475166G?off=j9wyn8mu&amp;checkoutMode=10">Get instant access ➜</a>
+          <div class="fine"><span>Secure checkout by Hotmart</span><span>Instant delivery</span></div>
+          <p class="steps-t">WHAT HAPPENS AFTER YOU PAY</p>
+          <ol class="steps">
+            <li><b>Pay once, $27</b><span>Secure checkout. No subscription, no hidden fees.</span></li>
+            <li><b>Check your email</b><span>Your access link arrives right after payment.</span></li>
+            <li><b>Download what you need</b><span>Open the private cloud folders and grab the niches you want, whenever you want.</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head"><h2>Frequently Asked Questions</h2><p>Everything you need to know before buying.</p></div>
+      <div class="faq">
+        <details><summary>How will I receive the files?</summary><div>Instantly. Immediately after payment, you will receive an email with a secure link to access our private cloud folders. You can download everything at once or just the specific folders you need, whenever you want.</div></details>
+        <details><summary>Can I use these for Commercial purposes?</summary><div><strong>Yes, absolutely.</strong> You have a full Commercial License to print these designs on physical products (T-shirts, hoodies, mugs, stickers, etc.) and sell them on Etsy, Shopify, Amazon Merch, or your own store. The only thing you cannot do is resell the digital files themselves.</div></details>
+        <details><summary>Do I need Photoshop to use them?</summary><div>No! All designs are saved as high-resolution <strong>Transparent PNGs</strong>. This means they work with any software: Canva, Illustrator, Photoshop, Silhouette, Cricut, or directly into your DTF/DTG printer software (RIP). Just drag and drop.</div></details>
+        <details><summary>Is this a monthly subscription?</summary><div><strong>No.</strong> This is a one-time payment. You pay once and get lifetime access to the entire pack, including all future updates and bonuses added to the folders. No hidden fees.</div></details>
+        <details><summary>What if I’m not satisfied?</summary><div>You’re covered by our <strong>30-day money-back guarantee</strong>. Download the pack, explore the folders, and use the designs. If you’re not happy for any reason, email our support team within 30 days and we’ll refund every penny. No questions asked.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="works">
+    <div class="wrap">
+      <span class="eyebrow">Works seamlessly with</span>
+      <div class="chips"><span>Canva</span><span>Photoshop</span><span>Illustrator</span><span>Procreate</span><span>Cricut</span><span>Printify</span></div>
+      <p>*No expensive software required. Just drag &amp; drop.</p>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="guar">
+        <div class="seal"><div>30<small>DAYS</small></div></div>
+        <div>
+          <span class="eyebrow">100% Risk-Free</span>
+          <h3 style="margin-top:8px">Iron-Clad 30-Day Guarantee</h3>
+          <p style="margin-top:12px">We don’t want your money if you’re not absolutely thrilled. Download the pack, explore the folders, and use the designs.<br><br>If you don’t feel like you received <b>10x the value</b> of your investment, simply email our support team within 30 days. We will refund every penny. <b class="hl">No questions asked. No hard feelings.</b></p>
+        </div>
+      </div>
+      <a class="btn cta" href="https://pay.hotmart.com/P102475166G?off=j9wyn8mu&amp;checkoutMode=10" style="margin-top:22px">Get instant access <small>$27</small></a>
+      <p class="ssl">🔒 Protected by SSL encryption</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="cmyk" aria-hidden="true"><i></i><i></i><i></i><i></i></div>8 Niche Profit Pack · Commercial license · Instant digital delivery</footer>
+
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div><small>FULL ACCESS BUNDLE</small><s>$654</s><b>$27</b></div>
+  <a class="btn cta" href="https://pay.hotmart.com/P102475166G?off=j9wyn8mu&amp;checkoutMode=10" tabindex="-1">Get access</a>
+</div>
+
+<script>
+(function(){
+  var PACKS={
+    1:[["v6ckPzNg/1-620.png","twzNzhkf/1-623.png","zT2KFXtK/1-733.png","spRwjRwK/1-734.png","3mQ9vRLS/1-752.png","Jjzt7Tst/1-756.png","8LN08xB6/1-837.png","5xFQ8YXx/1-839.png","G316qvxV/1-887.png","PZ9RgZjs/1-1060.png","tw9r2jtC/1-1063.png","nsmrqGTS/1-1065.png","RTVQDqNt/1-1075.png","XrD4fvnn/1-1100.png","S4rm5fsH/1-1112.png","n8zVV0Wk/1-1115.png"],["SXCqHWvy/1-1247.png","G3J0Bk12/1-1269.png","jPPy0tkJ/1-1322.png","t6gykdm/1-1325.png","8D0mGMpG/1-1334.png","zVzd7Jjq/1-1336.png","fzgz82bb/1-1339.png","zTSqjYCC/1-1366.png","vxwR8bHc/1-1370.png","Xx7Ssznn/1-1373.png","4Zd6gHHK/1-1374.png","DgrTbxmK/1-1376.png","V6W5GtH/1-1408.png","mVydtNGW/1-1410.png","wFqcfGXG/1-1415.png","mMffDfQ/1-1518.png","zWJ1xDgM/1-1526.png","0RRdL5Pw/1-1538.png"]],
+    2:[["xqfFjm2r/11-1.png","b50QS3VZ/11-2.png","9mtWVdLq/11-3.png","qYHmpJP9/11-4.png","WW1dkNm7/11-5.png","wZZn6CcX/11-6.png","b5JtLTN4/11-7.png","6cvpwrm0/11-8.png","GQMfn7y1/11-9.png","tPXsCfLC/11-10.png"],["LTmFS9c/11-11.png","Xf1MYZ5D/11-12.png","qhTQpYn/11-13.png","5XRHcxQj/11-14.png","VpJ4RWTK/11-15.png","Q33QnzVQ/11-16.png","67zxSWbk/11-17.png","rRB5vXLH/11-18.png","QvTNv8nV/11-19.png","NgvyH1cF/11-20.png","S7xsdj1y/11-21.png"]],
+    3:[["JwS8vvFH/1-7.png","5qh7x0n/1-12.png","xtv6T5kz/1-14.png","PsN81pk5/1-23.png","LXrY1S5f/1-84.png","0V28Y2bp/1-248.png","Myt2rsqq/1-254.png","FbVmNZn1/1-439.png","ZzBP60xq/1-461.png","PZQ0QCLc/1-477.png","n8kW5XJw/1-660.png","svTkhr3F/1-803.png","svbthcyj/1-817.png"],["4w2XgmL9/1-1122.png","VGcpYpy/1-1211.png","fVSSXMvt/1-1218.png","Fk9cysL3/1-1248.png","Fkqsy4ds/1-1359.png","gL2xnB99/1-1505.png","S847Kvt/1-1523.png","GQZYh7T3/1-1591.png","qMfSYG5Z/1-1595.png","6ck6fhzX/1-1661.png","WT9RcG4/1-1821.png","rf2pgnYw/1-2111.png"]],
+    4:[["4n4RJz4K/1-24.png","hxcdSGzz/1-25.png","hJ6jPfvf/1-26.png","fz4PGDxj/1-27.png","ds7yS36f/1-28.png","27yC3pX3/1-29.png","vxXqT8VP/1-30.png","Kx6mTk2g/1-31.png","VWNtjT5V/1-32.png","3ynyDrbN/1-33.png"],["ynw8vsW7/1-34.png","sp89kCTP/1-35.png","R4S527Wm/1-36.png","d07S5zSM/1-37.png","G4L2McKG/1-38.png","NnKT2LJg/1-39.png","mVsTDtvZ/1-40.png","NnLFRwL6/1-41.png","hxHSXYRM/1-42.png"]],
+    5:[["kk7td6C/1-98.png","LdfZmqrC/1-61.png","fGVGLNLC/1-540.png","s99j2PDH/1-531.png","99Srxkjg/1-343.png","4nty51F3/1-305.png","DD1L4b6T/1-298.png","G4zQyHf5/1-295.png","hxC2trsD/1-281.png","6JqLJjYj/1-267.png","JhKMKsr/1-263.png","BVmnDFk7/1-255.png","6Jy5kRbq/1-195.png","ns07scrp/1-179.png"],["5XcR8nQc/1-177.png","yzV76bv/1-175.png","wFK5pMVC/1-164.png","bMnyKVML/1-162.png","7NbsX5ky/1-16.png","gLNXJmVx/1-131.png","FL93gGQr/1-121.png","QFZb60z7/1-119.png","3yC5xchx/1-111.png","pB6VFTZj/1-109.png","FLpNKTx1/1-107.png","gb3LX0XD/1-105.png","1G5x5M8r/1-103.png"]],
+    6:[["ZvN2pKk/1-1.png","9mrZQMVS/1-2.png","TBD3LtM0/1-3.png","mr8RDfNS/1-4.png","kVkCBQHj/1-5.png","vCNfdnmp/1-6.png","YFNKzTnz/1-7.png","G4YDTFnY/1-8.png","35cYGwcx/1-9.png","JwwQTz29/1-10.png","YBxF3Qpb/1-11.png","C3gr6Bb5/1-12.png","mrqMrCyk/1-13.png","hJxJ2XRZ/1-14.png","HLZmZ6Fz/1-15.png","Myt354ND/1-16.png","VcbwgSvj/1-17.png","8gMMD6Kj/1-18.png","yFd3X1D1/1-19.png","cSGR7f2Z/1-20.png","LhNMh49j/1-21.png","DHQmmtjM/1-22.png","rrm4Sy3/1-23.png"],["JwGm9w2k/1-24.png","yBdfXWX8/1-25.png","jZDg8cQ1/1-26.png","zTkyf9cR/1-27.png","MxgWBsh9/1-28.png","x8BKF89q/1-29.png","7t32zyb3/1-30.png","M57RrsH8/1-31.png","GvhHYSvC/1-32.png","kV4XkchL/1-33.png","2YqjCrMS/1-34.png","Zz17dxD1/1-35.png","GQWMj0DJ/1-36.png","DH9PRct8/1-37.png","k2zYVnFt/1-38.png","99xGqy31/1-39.png","NdjdptMZ/1-40.png","RTpHZcMK/1-41.png","nMdnV9Bn/1-42.png","pBpMM4K9/1-43.png","dwZztRLG/1-44.png","DHd2PsL7/1-45.png"]],
+    7:[["934KXJtQ/wd-2.png","Q79fQ4bT/wd-3.png","VpNJDMFv/wd-4.png","Wp6vDRCb/wd-5.png","BVJyqfPn/wd-6.png","fdB8FZsX/wd-7.png","N2Z3Ryv3/wd-8.png","XxJ664Lt/wd-9.png","r2sm2wqk/wd-10.png","0yG4fQzP/wd-11.png","KpG7QJXW/wd-12.png","B2Kksr8z/wd-13.png"],["rf5Wrvrn/wd-15.png","ymJTspm7/wd-16.png","PRqRBnG/wd-17.png","YBNHTqWS/wd-18.png","5XksVV0Z/wd-19.png","JwB1nQJ2/wd-20.png","Pvf6PykY/wd-21.png","pv2CmzZz/wd-22.png","5XTkppbv/wd-23.png","yFqNXp3C/wd-24.png","4ZgTLgHh/wd-25.png","gFZsVW5c/wd-26.png"]],
+    8:[["zh7rY52L/1-9.png","NgKZHCPD/1-8.png","ZZHgC0f/1-6.png","bjZRQ6SZ/1-7.png","B57Hjbbs/1-5.png","5xRgTXch/1-4.png","7xgTjnKy/1-3.png","SXDHX1vt/1-25.png","Nd6Cy9K8/1-24.png","3mVj7PWH/1-23.png","zhwtS52b/1-22.png","VWCkBH9G/1-21.png","Fq7bhLtV/1-20.png"],["wrp1ZY9k/1-2.png","Zz4h8jMM/1-19.png","5XR1NL1Y/1-18.png","s9CyKGst/1-17.png","HLrbNrF5/1-16.png","1GpdC0RX/1-15.png","SXLqvf6r/1-14.png","r2H0skcQ/1-12.png","LzhDYk72/1-13.png","JwXgndpJ/1-10.png","LD2p8fMw/1-11.png","XxNVG8B2/1-1.png"]]
+  };
+  var TRENDS=["mFrxJq2L/1-9.png","KxLPmpG2/1-8.png","4R2hxTXG/1-7.png","jkGrnbsG/1-6.png","n8nMxxYG/1-5.png","dw7ftG4t/1-4.png","N6BxkgvY/1-3.png","84SxFNnk/1-24.png","yGrgx2G/1-23.png","ym4mXp3k/1-22.png","VpNk1BxC/1-21.png","LXCbB277/1-20.png","LXHC0fFv/1-2.png","ZzZQKkDf/1-19.png","KjCB4Ymn/1-18.png","KzWrBB0C/1-16.png","wtMqrfB/1-17.png","Zz5C9KRz/1-14.png","ZyvT2HC/1-15.png","nMVBrgTr/1-13.png","s9W76W5t/1-11.png","mFXJcNZy/1-12.png","BK3Jh6bY/1-10.png","rGwvjT51/1-1.png"];
+
+  function tiles(list,label){
+    var h="";
+    list.concat(list).forEach(function(p){
+      var file=p.split("/")[1];
+      h+='<figure class="tile"><img loading="lazy" decoding="async" alt="'+label+' design '+file+'" src="images/'+p.replace("/","_").replace(".png",".webp")+'"><figcaption><b>'+file+'</b><span>300 DPI</span></figcaption></figure>';
+    });
+    return h;
+  }
+  document.querySelectorAll(".pack").forEach(function(sec){
+    var rows=PACKS[sec.dataset.pack], tr=sec.querySelectorAll(".track"), name=sec.querySelector("h3").textContent;
+    tr[0].innerHTML=tiles(rows[0],name); tr[1].innerHTML=tiles(rows[1],name);
+  });
+  document.getElementById("bonus-track").innerHTML=tiles(TRENDS,"Trend");
+
+  // Image load / failure handling (images live on external hosts)
+  document.addEventListener("load",function(e){var t=e.target;if(t.tagName==="IMG"&&t.parentNode.classList.contains("tile"))t.parentNode.classList.add("ok")},true);
+  document.addEventListener("error",function(e){
+    var t=e.target;if(t.tagName!=="IMG")return;
+    if(t.parentNode.classList.contains("tile")){t.remove();return}
+    if(t.id==="demo-gif"){document.getElementById("demo-view").classList.add("fallback");t.remove();return}
+    if(t.hasAttribute("data-hide-on-error")){t.parentNode.hidden=true}
+  },true);
+
+  // Sticky CTA: show after the hero, hide while the offer is on screen
+  var sticky=document.getElementById("sticky"),hero=document.querySelector(".hero"),offer=document.getElementById("offer"),pastHero=false,offerVisible=false;
+  function upd(){sticky.classList.toggle("show",pastHero&&!offerVisible)}
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(en){pastHero=!en[0].isIntersecting&&en[0].boundingClientRect.top<0;upd()}).observe(hero);
+    new IntersectionObserver(function(en){offerVisible=en[0].isIntersecting;upd()},{threshold:.15}).observe(offer);
+  }
+
+  // UTM passthrough to Hotmart + InitiateCheckout
+  var keys=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"],q=new URLSearchParams(location.search);
+  if(!keys.some(function(k){return q.has(k)})&&document.referrer){try{q.set("utm_source",new URL(document.referrer).hostname.replace(/^www\./,""));q.set("utm_medium","referral")}catch(e){}}
+  var sck=("src:"+(q.get("utm_source")||"direct")+"|md:"+(q.get("utm_medium")||"na")+"|cmp:"+(q.get("utm_campaign")||"na")+"|cnt:"+(q.get("utm_content")||"na")+"|trm:"+(q.get("utm_term")||"na")).slice(0,240);
+  document.querySelectorAll('a[href*="pay.hotmart"]').forEach(function(a){
+    try{var u=new URL(a.getAttribute("href"));keys.forEach(function(k){if(q.get(k))u.searchParams.set(k,q.get(k))});u.searchParams.set("sck",sck);a.href=u.toString()}catch(e){}
+    a.addEventListener("click",function(){if(typeof fbq==="function")fbq("track","InitiateCheckout")});
+  });
+})();
+</script>
+
+</html>
