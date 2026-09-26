@@ -109,10 +109,10 @@ p{margin:0}
 .pack-count b{display:block;font:900 40px/1 var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
 .pack-count span{font:600 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--dim)}
 /* Snap carousel: one design centred, neighbours peeking; auto-advances, swipeable */
-.rail{--cw:min(70vw,300px);overflow:hidden;padding-block:8px 16px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.rail{--cw:min(82vw,360px);overflow:hidden;padding-block:8px 16px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .track{display:flex;gap:14px;width:max-content;transition:transform .6s cubic-bezier(.22,.7,.2,1);will-change:transform}
 .track.drag{transition:none}
-.rail .tile{width:var(--cw);transform:scale(.88);opacity:.55;transition:transform .45s ease,opacity .45s ease,box-shadow .25s ease}
+.rail .tile{width:var(--cw);transform:scale(.9);opacity:.5;transition:transform .45s ease,opacity .45s ease,box-shadow .25s ease}
 .rail .tile.cur{transform:none;opacity:1}
 .rail img{pointer-events:none;-webkit-user-drag:none}
 .car-ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px}
@@ -191,7 +191,7 @@ p{margin:0}
 .bonus-media{padding:0 20px 18px}
 .bonus-media img{border-radius:10px;border:1px solid var(--line);width:100%}
 .bonus-rail{padding-bottom:18px}
-.bonus-rail{--cw:min(58vw,240px)}
+.bonus-rail{--cw:min(70vw,290px)}
 .bonus .car-ctl{padding-bottom:18px}
 .val{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:1px solid var(--line);background:var(--bg-2)}
 .val s{font:500 14px/1 var(--mono);color:var(--dim)}
@@ -585,7 +585,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
   });
   document.getElementById("bonus-track").innerHTML=tiles(TRENDS,"Trend");
 
-  // Carousels: move by transform (works the same on iPhone and Android), auto-advance every 2.5s,
+  // Carousels: move by transform (works the same on iPhone and Android), auto-advance every 2s,
   // loop through every design, swipe or use the arrows; a short tap switches the design's ground.
   var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
   var carousels=[];
@@ -616,7 +616,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
   if(!still)setInterval(function(){
     if(document.hidden)return;
     carousels.forEach(function(c){var r=c.rail.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)c.next()});
-  },2500);
+  },2000);
 
 
   // Image load / failure handling (images live on external hosts)
