@@ -111,29 +111,23 @@ p{margin:0}
 .rail{overflow:hidden;padding-block:6px 14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .track{display:flex;gap:14px;width:max-content;animation:slide var(--dur,90s) linear infinite;will-change:transform}
 .rail.rev .track{animation-direction:reverse}
-.rail:hover .track,.rail:active .track{animation-play-state:paused}
 @keyframes slide{to{transform:translate3d(-50%,0,0)}}
-/* Transparent-PNG checkerboard, fading every 3s to the design's own black or white ground */
-.tile,.lb figure{--solid:#0B0B0C;background-color:#FFFFFF;background-image:linear-gradient(45deg,#D9DBDF 25%,transparent 25%,transparent 75%,#D9DBDF 75%),linear-gradient(45deg,#D9DBDF 25%,transparent 25%,transparent 75%,#D9DBDF 75%);background-size:20px 20px;background-position:0 0,10px 10px}
-.tile.w,.lb figure.w{--solid:#FFFFFF}
-.tile::before,.lb figure::before{content:"";position:absolute;inset:0;background:var(--solid);opacity:0;animation:ground 6s ease-in-out infinite}
-.tile::after{content:"PNG · TRANSPARENT";position:absolute;top:10px;left:10px;z-index:2;padding:5px 8px;border-radius:6px;background:rgba(17,18,21,.85);color:#fff;font:600 9.5px/1 var(--mono);letter-spacing:.08em;animation:badge 6s ease-in-out infinite}
-@keyframes ground{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
-@keyframes badge{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
-.tile{position:relative;flex:0 0 auto;width:min(66vw,280px);aspect-ratio:4/5;margin:0;border-radius:16px;overflow:hidden;cursor:zoom-in;box-shadow:0 18px 36px -18px rgba(17,18,21,.45),inset 0 0 0 1px var(--line);transition:transform .25s ease,box-shadow .25s ease}
-.tile img,.lb img{position:relative;z-index:1}
-.tile:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 44px -18px rgba(17,18,21,.6)}
+/* Transparent-PNG checkerboard; tapping a card switches it to the design's own black or white ground */
+.tile{--solid:#0B0B0C;background-color:#FFFFFF;background-image:linear-gradient(45deg,#D9DBDF 25%,transparent 25%,transparent 75%,#D9DBDF 75%),linear-gradient(45deg,#D9DBDF 25%,transparent 25%,transparent 75%,#D9DBDF 75%);background-size:20px 20px;background-position:0 0,10px 10px}
+.tile.w{--solid:#FFFFFF}
+.tile::before{content:"";position:absolute;inset:0;background:var(--solid);opacity:0;transition:opacity .35s ease}
+.tile.on::before{opacity:1}
+.tile::after{content:"PNG · TRANSPARENT";position:absolute;top:10px;left:10px;z-index:2;padding:5px 8px;border-radius:6px;background:rgba(17,18,21,.85);color:#fff;font:600 9.5px/1 var(--mono);letter-spacing:.08em;transition:opacity .35s ease}
+.tile.on::after{opacity:0}
+.tile{position:relative;flex:0 0 auto;width:min(66vw,280px);aspect-ratio:4/5;margin:0;border-radius:16px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 18px 36px -18px rgba(17,18,21,.45),inset 0 0 0 1px var(--line);transition:transform .25s ease,box-shadow .25s ease}
+.tile img{position:relative;z-index:1}
+@media (hover:hover){.tile:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 44px -18px rgba(17,18,21,.6)}}
 .tile img{width:100%;height:100%;object-fit:contain;padding:14px}
 .tile figcaption{position:absolute;left:10px;right:10px;bottom:10px;display:flex;justify-content:space-between;gap:6px;padding:7px 9px;border-radius:7px;background:rgba(255,255,255,.94);font:600 10px/1.2 var(--mono);color:var(--dim)}
 .tile figcaption b{color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tile.ok figcaption{display:none}
-/* Lightbox */
-.lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));background:rgba(8,9,11,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .2s}
-.lb.open{opacity:1;visibility:visible}
-.lb figure{position:relative;margin:0;width:min(92vw,560px);aspect-ratio:4/5;border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.6)}
-.lb img{width:100%;height:100%;object-fit:contain;padding:22px}
-.lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;width:48px;height:48px;border:0;border-radius:50%;background:#fff;color:#111;font:500 26px/1 var(--body);cursor:pointer}
-.lb p{margin-top:14px;text-align:center;color:#C9CCD2;font:600 12px/1 var(--mono);letter-spacing:.1em}
+.tap-hint{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:4px;font:600 11px/1.3 var(--mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.tap-hint i{width:14px;height:14px;border-radius:3px;background:linear-gradient(90deg,#0B0B0C 50%,#fff 50%);box-shadow:inset 0 0 0 1px var(--line)}
 
 /* Problem / solution lists */
 .rows{display:grid;gap:10px}
@@ -302,7 +296,7 @@ footer .cmyk{margin-bottom:12px}
   .big{font-size:100px}
 }
 @media (prefers-reduced-motion:reduce){
-  .ribbon-track,.track,.btn::after,.hero-top i,.tile::before,.tile::after,.lb figure::before{animation:none}
+  .ribbon-track,.track,.btn::after,.hero-top i{animation:none}
   .rail{overflow-x:auto}
 }
 </style>
@@ -349,9 +343,9 @@ fbq('init','1608923080101822');fbq('track','PageView');
 </header>
 
 <main>
-  <section class="pack" data-pack="1"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #01</span><h3>Car &amp; Automotive</h3></div><div class="pack-count"><b>4,558</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
-  <section class="pack" data-pack="2"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #02</span><h3>Halftone Collection</h3></div><div class="pack-count"><b>2,178</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
-  <section class="pack" data-pack="3"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #03</span><h3>Brand Aesthetics</h3></div><div class="pack-count"><b>2,862</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
+  <section class="pack" data-pack="1"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #01</span><h3>Car &amp; Automotive</h3></div><div class="pack-count"><b>4,558</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="2"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #02</span><h3>Halftone Collection</h3></div><div class="pack-count"><b>2,178</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="3"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #03</span><h3>Brand Aesthetics</h3></div><div class="pack-count"><b>2,862</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
 
   <section class="sec on-ink">
     <div class="wrap">
@@ -367,7 +361,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
     </div>
   </section>
 
-  <section class="pack" data-pack="4"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #04</span><h3>Streetwear Collection</h3></div><div class="pack-count"><b>1,811</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
+  <section class="pack" data-pack="4"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #04</span><h3>Streetwear Collection</h3></div><div class="pack-count"><b>1,811</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
 
   <section class="sec">
     <div class="wrap">
@@ -383,10 +377,10 @@ fbq('init','1608923080101822');fbq('track','PageView');
     </div>
   </section>
 
-  <section class="pack" data-pack="5"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #05</span><h3>NBA Basketball</h3></div><div class="pack-count"><b>2,571</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
-  <section class="pack" data-pack="6"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #06</span><h3>Cartoon Supreme</h3></div><div class="pack-count"><b>4,526</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
-  <section class="pack" data-pack="7"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #07</span><h3>Bootleg &amp; Vintage</h3></div><div class="pack-count"><b>870</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
-  <section class="pack" data-pack="8"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #08</span><h3>Women’s Lifestyle</h3></div><div class="pack-count"><b>822</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div></section>
+  <section class="pack" data-pack="5"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #05</span><h3>NBA Basketball</h3></div><div class="pack-count"><b>2,571</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="6"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #06</span><h3>Cartoon Supreme</h3></div><div class="pack-count"><b>4,526</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="7"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #07</span><h3>Bootleg &amp; Vintage</h3></div><div class="pack-count"><b>870</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="8"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #08</span><h3>Women’s Lifestyle</h3></div><div class="pack-count"><b>822</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
 
   <section class="sec">
     <div class="wrap wide">
@@ -585,18 +579,8 @@ fbq('init','1608923080101822');fbq('track','PageView');
   });
   var bt=document.getElementById("bonus-track");bt.innerHTML=tiles(TRENDS,"Trend");bt.style.setProperty("--dur",(TRENDS.length*3.5)+"s");
 
-  // Tap a design to see it large
-  var lb=document.createElement("div");lb.className="lb";lb.setAttribute("role","dialog");lb.setAttribute("aria-modal","true");lb.setAttribute("aria-label","Design preview");
-  lb.innerHTML='<button type="button" aria-label="Close">×</button><div><figure><img alt=""></figure><p>PNG · TRANSPARENT · 300 DPI</p></div>';
-  document.body.appendChild(lb);
-  var lbFig=lb.querySelector("figure"),lbImg=lb.querySelector("img");
-  function closeLb(){lb.classList.remove("open")}
-  document.addEventListener("click",function(e){
-    var t=e.target.closest(".tile.ok");
-    if(t){var im=t.querySelector("img");lbImg.src=im.src;lbImg.alt=im.alt;lbFig.className=t.classList.contains("w")?"w":"";lb.classList.add("open");lb.querySelector("button").focus();return}
-    if(lb.classList.contains("open")&&!e.target.closest("figure"))closeLb();
-  });
-  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLb()});
+  // Tap a design to see it on its black or white ground (tap again for the PNG checkerboard)
+  document.addEventListener("click",function(e){var t=e.target.closest(".tile");if(t)t.classList.toggle("on")});
 
   // Image load / failure handling (images live on external hosts)
   document.addEventListener("load",function(e){var t=e.target;if(t.tagName==="IMG"&&t.parentNode.classList.contains("tile"))t.parentNode.classList.add("ok")},true);
