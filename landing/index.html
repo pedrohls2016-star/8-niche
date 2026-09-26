@@ -252,6 +252,30 @@ p{margin:0}
 .steps b{font-size:15px;font-weight:700}
 .steps span{font-size:14px;color:var(--muted);line-height:1.45}
 
+/* ---------- Type in motion ---------- */
+/* Hero: the headline builds line by line on load, the money tag stamps in, then nudges now and then */
+.hero h1 > span{animation:rise .7s cubic-bezier(.2,.75,.2,1) both;animation-delay:calc(var(--i,0) * 110ms + 120ms)}
+.hero h1 .h-money{animation:stamp .55s cubic-bezier(.3,1.6,.5,1) both,nudge 5s ease-in-out 2.4s infinite;animation-delay:calc(var(--i,0) * 110ms + 200ms),2.4s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes stamp{from{opacity:0;transform:rotate(-12deg) scale(1.7)}to{opacity:1;transform:rotate(-2deg) scale(1)}}
+@keyframes nudge{0%,86%,100%{transform:rotate(-2deg) scale(1)}90%{transform:rotate(1.5deg) scale(1.06)}94%{transform:rotate(-3.5deg) scale(1.03)}}
+.h-big .count{font-variant-numeric:tabular-nums}
+/* Shimmer passing through the big number */
+.hero h1 .h-big{background:linear-gradient(100deg,var(--text) 40%,#6B6F78 50%,var(--text) 60%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rise .7s cubic-bezier(.2,.75,.2,1) both,glint 6s ease-in-out 1.6s infinite;animation-delay:calc(var(--i,0) * 110ms + 120ms),1.6s}
+.hero h1 .h-big small{-webkit-text-fill-color:var(--text)}
+@keyframes glint{0%,70%{background-position:100% 0}100%{background-position:-50% 0}}
+/* Headings lift into place as they arrive (always readable: only position changes) */
+.lift{transition:transform .8s cubic-bezier(.2,.75,.2,1),letter-spacing .8s cubic-bezier(.2,.75,.2,1)}
+.lift.wait{transform:translateY(26px);letter-spacing:.06em}
+/* Yellow marker sweeps under key words */
+.mark{background:linear-gradient(var(--yellow),var(--yellow)) 0 88%/100% .32em no-repeat;transition:background-size .9s cubic-bezier(.2,.75,.2,1) .15s;padding-inline:.04em}
+.mark.wait{background-size:0 .32em}
+/* Old price gets struck through, then the price counts down */
+.stack-t s{text-decoration:none;background:linear-gradient(var(--red),var(--red)) 0 55%/100% 2px no-repeat;transition:background-size .7s ease .2s}
+.stack-t s.wait{background-size:0 2px}
+.ribbon{animation:ribbonGlow 3s ease-in-out infinite}
+@keyframes ribbonGlow{50%{background:#FFE14D}}
+
 /* FAQ */
 .faq{display:grid;gap:10px}
 .faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -310,7 +334,8 @@ footer .cmyk{margin-bottom:12px}
   .big{font-size:100px}
 }
 @media (prefers-reduced-motion:reduce){
-  .ribbon-track,.btn::after,.hero-top i{animation:none}
+  .ribbon-track,.btn::after,.hero-top i,.ribbon,.hero h1 > span,.hero h1 .h-money,.hero h1 .h-big{animation:none}
+  .lift,.mark,.stack-t s{transition:none}
   .rail .tile{transition:none}
 }
 </style>
@@ -335,7 +360,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
       <svg class="reg tl" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M11 0v22M0 11h22"/></svg>
       <svg class="reg br" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M11 0v22M0 11h22"/></svg>
       <div class="cmyk" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="hero-top"><i></i>8 Niche Profit Pack</div>
-      <h1><span class="h-lead">The pack with</span> <span class="h-big">20,000+ <small>ready‑to‑use designs</small></span> <span class="h-mid">you won’t find on Google, Pinterest, or&nbsp;Canva — and it’s already putting up&nbsp;to</span> <span class="h-money">$5,000 a week</span> <span class="h-mid">in the pockets of people using&nbsp;it.</span></h1>
+      <h1><span style="--i:0" class="h-lead">The pack with</span> <span style="--i:1" class="h-big"><span class="count" data-to="20000">20,000</span>+ <small>ready‑to‑use designs</small></span> <span style="--i:2" class="h-mid">you won’t find on Google, Pinterest, or&nbsp;Canva — and it’s already putting up&nbsp;to</span> <span style="--i:3" class="h-money">$5,000 a week</span> <span style="--i:4" class="h-mid">in the pockets of people using&nbsp;it.</span></h1>
       <p class="hero-sub">Curated, Organized, and Ready to Print.</p>
       <div class="hero-note">
         <p>Stop digging through “junk” in massive Mega Packs. Get an elite arsenal of High-Res files ready for instant upload. The goal isn’t to fill your hard drive — it is to:</p>
@@ -357,9 +382,9 @@ fbq('init','1608923080101822');fbq('track','PageView');
 </header>
 
 <main>
-  <section class="pack" data-pack="1"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #01</span><h3>Car &amp; Automotive</h3></div><div class="pack-count"><b>4,558</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
-  <section class="pack" data-pack="2"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #02</span><h3>Halftone Collection</h3></div><div class="pack-count"><b>2,178</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
-  <section class="pack" data-pack="3"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #03</span><h3>Brand Aesthetics</h3></div><div class="pack-count"><b>2,862</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="1"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #01</span><h3>Car &amp; Automotive</h3></div><div class="pack-count"><b class="count" data-to="4558">4,558</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="2"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #02</span><h3>Halftone Collection</h3></div><div class="pack-count"><b class="count" data-to="2178">2,178</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="3"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #03</span><h3>Brand Aesthetics</h3></div><div class="pack-count"><b class="count" data-to="2862">2,862</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
 
   <section class="sec on-ink">
     <div class="wrap">
@@ -371,11 +396,11 @@ fbq('init','1608923080101822');fbq('track','PageView');
         <div class="row"><span class="mk no">✕</span><div><strong>Outdated Junk</strong><span>Designs from 2010 that nobody wants to wear.</span></div></div>
         <div class="row"><span class="mk no">✕</span><div><strong>Wasted Time</strong><span>Hours lost just trying to unzip files and organize folders.</span></div></div>
       </div>
-      <p class="punch">You don’t need more files.<br><span class="hl">You need better files.</span><br>And you need them organized.</p>
+      <p class="punch">You don’t need more files.<br><span class="mark">You need better files.</span><br>And you need them organized.</p>
     </div>
   </section>
 
-  <section class="pack" data-pack="4"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #04</span><h3>Streetwear Collection</h3></div><div class="pack-count"><b>1,811</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="4"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #04</span><h3>Streetwear Collection</h3></div><div class="pack-count"><b class="count" data-to="1811">1,811</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
 
   <section class="sec">
     <div class="wrap">
@@ -391,10 +416,10 @@ fbq('init','1608923080101822');fbq('track','PageView');
     </div>
   </section>
 
-  <section class="pack" data-pack="5"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #05</span><h3>NBA Basketball</h3></div><div class="pack-count"><b>2,571</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
-  <section class="pack" data-pack="6"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #06</span><h3>Cartoon Supreme</h3></div><div class="pack-count"><b>4,526</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
-  <section class="pack" data-pack="7"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #07</span><h3>Bootleg &amp; Vintage</h3></div><div class="pack-count"><b>870</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
-  <section class="pack" data-pack="8"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #08</span><h3>Women’s Lifestyle</h3></div><div class="pack-count"><b>822</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="5"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #05</span><h3>NBA Basketball</h3></div><div class="pack-count"><b class="count" data-to="2571">2,571</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="6"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #06</span><h3>Cartoon Supreme</h3></div><div class="pack-count"><b class="count" data-to="4526">4,526</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="7"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #07</span><h3>Bootleg &amp; Vintage</h3></div><div class="pack-count"><b class="count" data-to="870">870</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
+  <section class="pack" data-pack="8"><div class="wrap wide pack-head"><div><span class="eyebrow">Pack #08</span><h3>Women’s Lifestyle</h3></div><div class="pack-count"><b class="count" data-to="822">822</b><span>DESIGNS</span></div></div><div class="rail"><div class="track"></div></div><p class="tap-hint"><i></i>Tap a design to see it on a black or white tee</p></section>
 
   <section class="sec">
     <div class="wrap wide">
@@ -457,14 +482,14 @@ fbq('init','1608923080101822');fbq('track','PageView');
             <ul class="ticks"><li>Ideal selling price &amp; Profit targets</li><li>Profit per sale after fees</li><li>Basic ad break-even points</li></ul></div>
           <div class="val"><div><small>VALUE</small><s>$67.00</s></div><b>FREE</b></div>
         </article>
-        <div class="total"><small>TOTAL BONUS VALUE</small><strong>$360.00</strong><span>Yours 100% FREE when you join today.</span></div>
+        <div class="total"><small>TOTAL BONUS VALUE</small><strong>$<span class="count" data-to="360">360</span>.00</strong><span>Yours 100% FREE when you join today.</span></div>
       </div>
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap">
-      <div class="sec-head"><h2>Stop guessing.<br><span class="hl">See exactly what you get.</span></h2><p>No mystery boxes or messy folders. Get instant access to a <strong>clean, organized dashboard</strong> designed for speed.</p></div>
+      <div class="sec-head"><h2>Stop guessing.<br><span class="mark">See exactly what you get.</span></h2><p>No mystery boxes or messy folders. Get instant access to a <strong>clean, organized dashboard</strong> designed for speed.</p></div>
       <div class="laptop">
         <div class="screen"><div class="cam"></div>
           <div class="view" id="demo-view">
@@ -489,7 +514,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
   <section class="sec" id="offer" style="padding-top:8px">
     <div class="wrap">
       <div class="offer">
-        <div class="offer-top"><h2>Full Access <span class="hl">Bundle</span></h2><p>Everything you need to scale your store.</p></div>
+        <div class="offer-top"><h2>Full Access <span class="mark">Bundle</span></h2><p>Everything you need to scale your store.</p></div>
         <div class="flag">EVERYTHING INCLUDED</div>
         <div class="stack">
           <div class="stack-r"><span>8 Niche Packs (20k+ Designs)</span><s>$197.00</s></div>
@@ -502,7 +527,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
         </div>
         <div class="price">
           <span class="pill">✓ LAUNCH PRICE</span>
-          <div class="big"><sup>$</sup>27</div>
+          <div class="big"><sup>$</sup><span class="count" data-to="27" data-from="654">27</span></div>
           <span class="once">SINGLE ONE-TIME PAYMENT</span>
           <a class="btn cta" href="https://pay.hotmart.com/P102475166G?off=j9wyn8mu&amp;checkoutMode=10">Get instant access ➜</a>
           <div class="fine"><span>Secure checkout by Hotmart</span><span>Instant delivery</span></div>
@@ -624,6 +649,32 @@ fbq('init','1608923080101822');fbq('track','PageView');
     carousels.forEach(function(c){var r=c.rail.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)c.next()});
   },2000);
 
+
+  // Type in motion: count-ups, headings that lift in, marker sweeps. Everything is readable at rest;
+  // only elements below the fold at load are prepared, and nothing waits hidden.
+  (function(){
+    var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function fmt(n){return Math.round(n).toLocaleString("en-US")}
+    function count(el){
+      var to=+el.dataset.to,from=el.dataset.from?+el.dataset.from:0,t0=performance.now(),dur=from>to?1100:1300;
+      (function step(t){var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(from+(to-from)*e);if(k<1)requestAnimationFrame(step)})(t0);
+    }
+    if(still)return;
+    var hero=document.querySelector(".hero .count");if(hero)setTimeout(function(){count(hero)},250);
+    var lifts=[].slice.call(document.querySelectorAll(".sec-head h2,.pack-head h3,.cmp h3,.offer-top h2,.guar h3,.intro strong,.punch"));
+    lifts.forEach(function(el){el.classList.add("lift")});
+    var watch=lifts.concat([].slice.call(document.querySelectorAll(".mark,.stack-t s,main .count")));
+    if(!("IntersectionObserver" in window))return;
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){
+      if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
+      el.classList.remove("wait");
+      if(el.classList.contains("count"))count(el);
+    })},{rootMargin:"0px 0px -12% 0px"});
+    watch.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top>innerHeight*0.9){if(!el.classList.contains("count"))el.classList.add("wait");io.observe(el)}
+    });
+  })();
 
   // Image load / failure handling (images live on external hosts)
   document.addEventListener("load",function(e){var t=e.target;if(t.tagName==="IMG"&&t.parentNode.classList.contains("tile"))t.parentNode.classList.add("ok")},true);
