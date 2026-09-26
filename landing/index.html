@@ -109,11 +109,12 @@ p{margin:0}
 .pack-count b{display:block;font:900 40px/1 var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
 .pack-count span{font:600 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--dim)}
 /* Snap carousel: one design centred, neighbours peeking; auto-advances, swipeable */
-.rail{--cw:min(70vw,300px);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding-block:8px 16px}
-.rail::-webkit-scrollbar{display:none}
-.track{display:flex;gap:14px;width:max-content;padding-inline:calc(50vw - var(--cw) / 2)}
-.rail .tile{width:var(--cw);scroll-snap-align:center;scroll-snap-stop:always;transform:scale(.88);opacity:.55;transition:transform .45s ease,opacity .45s ease,box-shadow .25s ease}
+.rail{--cw:min(70vw,300px);overflow:hidden;padding-block:8px 16px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.track{display:flex;gap:14px;width:max-content;transition:transform .6s cubic-bezier(.22,.7,.2,1);will-change:transform}
+.track.drag{transition:none}
+.rail .tile{width:var(--cw);transform:scale(.88);opacity:.55;transition:transform .45s ease,opacity .45s ease,box-shadow .25s ease}
 .rail .tile.cur{transform:none;opacity:1}
+.rail img{pointer-events:none;-webkit-user-drag:none}
 .car-ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px}
 .car-ctl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);font:700 18px/1 var(--body);cursor:pointer;display:grid;place-items:center}
 .car-ctl button:hover{border-color:var(--text)}
@@ -584,28 +585,39 @@ fbq('init','1608923080101822');fbq('track','PageView');
   });
   document.getElementById("bonus-track").innerHTML=tiles(TRENDS,"Trend");
 
-  // Carousels: auto-advance every 2.5s through every design, loop, pause after the visitor swipes
+  // Carousels: move by transform (works the same on iPhone and Android), auto-advance every 2.5s,
+  // loop through every design, swipe or use the arrows; a short tap switches the design's ground.
   var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var carousels=[];
   document.querySelectorAll(".rail").forEach(function(rail){
-    var items=[].slice.call(rail.querySelectorAll(".tile")),idx=0,hold=0,visible=false,raf=0;
+    var track=rail.querySelector(".track"),items=[].slice.call(track.children),idx=0,hold=0,x0=0,y0=0,dx=0,down=false,base=0;
+    if(!items.length)return;
     var ctl=document.createElement("div");ctl.className="car-ctl";
     ctl.innerHTML='<button type="button" aria-label="Previous design">‹</button><span class="car-n" aria-live="polite"></span><button type="button" aria-label="Next design">›</button>';
     rail.after(ctl);
     var num=ctl.querySelector(".car-n"),total=String(items.length);
-    function mark(i){items.forEach(function(t,k){t.classList.toggle("cur",k===i)});num.innerHTML="<b>"+String(i+1).padStart(2,"0")+"</b> / "+total}
-    function go(i,smooth){idx=(i+items.length)%items.length;var t=items[idx];rail.scrollTo({left:t.offsetLeft-(rail.clientWidth-t.offsetWidth)/2,behavior:smooth===false?"auto":"smooth"});mark(idx)}
-    function nearest(){var c=rail.scrollLeft+rail.clientWidth/2,b=0,d=1e9;items.forEach(function(t,k){var m=Math.abs(t.offsetLeft+t.offsetWidth/2-c);if(m<d){d=m;b=k}});return b}
-    rail.addEventListener("scroll",function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){idx=nearest();mark(idx)})},{passive:true});
-    ["pointerdown","touchstart","wheel"].forEach(function(ev){rail.addEventListener(ev,function(){hold=Date.now()+6000},{passive:true})});
-    ctl.children[0].addEventListener("click",function(){hold=Date.now()+6000;go(idx-1)});
-    ctl.children[2].addEventListener("click",function(){hold=Date.now()+6000;go(idx+1)});
-    if("IntersectionObserver" in window)new IntersectionObserver(function(en){visible=en[0].isIntersecting}).observe(rail);else visible=true;
-    mark(0);
-    if(!still)setInterval(function(){if(visible&&Date.now()>hold&&!document.hidden)go(idx+1)},2500);
+    function offset(i){var t=items[i];return rail.clientWidth/2-(t.offsetLeft+t.offsetWidth/2)}
+    function go(i){idx=(i+items.length)%items.length;base=offset(idx);track.style.transform="translate3d("+base+"px,0,0)";
+      items.forEach(function(t,k){t.classList.toggle("cur",k===idx)});num.innerHTML="<b>"+String(idx+1).padStart(2,"0")+"</b> / "+total}
+    function pause(){hold=Date.now()+6000}
+    ctl.children[0].addEventListener("click",function(){pause();go(idx-1)});
+    ctl.children[2].addEventListener("click",function(){pause();go(idx+1)});
+    rail.addEventListener("pointerdown",function(e){down=true;x0=e.clientX;y0=e.clientY;dx=0;pause()});
+    rail.addEventListener("pointermove",function(e){if(!down)return;dx=e.clientX-x0;if(Math.abs(dx)>6){track.classList.add("drag");track.style.transform="translate3d("+(base+dx)+"px,0,0)"}});
+    function end(e){if(!down)return;down=false;track.classList.remove("drag");pause();
+      if(Math.abs(dx)>40){go(idx+(dx<0?1:-1));}
+      else{go(idx);if(e.type==="pointerup"&&Math.abs(dx)<=6&&Math.abs(e.clientY-y0)<=6){var t=document.elementFromPoint(e.clientX,e.clientY);t=t&&t.closest(".tile");if(t)t.classList.toggle("on")}}}
+    rail.addEventListener("pointerup",end);rail.addEventListener("pointercancel",end);rail.addEventListener("pointerleave",end);
+    carousels.push({rail:rail,next:function(){if(Date.now()>hold)go(idx+1)},fit:function(){go(idx)}});
+    go(0);
   });
+  window.addEventListener("resize",function(){carousels.forEach(function(c){c.fit()})});
+  window.addEventListener("load",function(){carousels.forEach(function(c){c.fit()})});
+  if(!still)setInterval(function(){
+    if(document.hidden)return;
+    carousels.forEach(function(c){var r=c.rail.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)c.next()});
+  },2500);
 
-  // Tap a design to see it on its black or white ground (tap again for the PNG checkerboard)
-  document.addEventListener("click",function(e){var t=e.target.closest(".tile");if(t)t.classList.toggle("on")});
 
   // Image load / failure handling (images live on external hosts)
   document.addEventListener("load",function(e){var t=e.target;if(t.tagName==="IMG"&&t.parentNode.classList.contains("tile"))t.parentNode.classList.add("ok")},true);
