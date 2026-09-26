@@ -108,10 +108,17 @@ p{margin:0}
 .pack-count{text-align:right;flex-shrink:0}
 .pack-count b{display:block;font:900 40px/1 var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
 .pack-count span{font:600 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--dim)}
-.rail{overflow:hidden;padding-block:6px 14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.track{display:flex;gap:14px;width:max-content;animation:slide var(--dur,90s) linear infinite;will-change:transform}
-.rail.rev .track{animation-direction:reverse}
-@keyframes slide{to{transform:translate3d(-50%,0,0)}}
+/* Snap carousel: one design centred, neighbours peeking; auto-advances, swipeable */
+.rail{--cw:min(70vw,300px);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding-block:8px 16px}
+.rail::-webkit-scrollbar{display:none}
+.track{display:flex;gap:14px;width:max-content;padding-inline:calc(50vw - var(--cw) / 2)}
+.rail .tile{width:var(--cw);scroll-snap-align:center;scroll-snap-stop:always;transform:scale(.88);opacity:.55;transition:transform .45s ease,opacity .45s ease,box-shadow .25s ease}
+.rail .tile.cur{transform:none;opacity:1}
+.car-ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px}
+.car-ctl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);font:700 18px/1 var(--body);cursor:pointer;display:grid;place-items:center}
+.car-ctl button:hover{border-color:var(--text)}
+.car-n{min-width:74px;text-align:center;font:600 13px/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.car-n b{color:var(--text)}
 /* Transparent-PNG checkerboard; tapping a card switches it to the design's own black or white ground */
 .tile{--solid:#0B0B0C;background-color:#FFFFFF;background-image:linear-gradient(45deg,#D9DBDF 25%,transparent 25%,transparent 75%,#D9DBDF 75%),linear-gradient(45deg,#D9DBDF 25%,transparent 25%,transparent 75%,#D9DBDF 75%);background-size:20px 20px;background-position:0 0,10px 10px}
 .tile.w{--solid:#FFFFFF}
@@ -119,7 +126,7 @@ p{margin:0}
 .tile.on::before{opacity:1}
 .tile::after{content:"PNG · TRANSPARENT";position:absolute;top:10px;left:10px;z-index:2;padding:5px 8px;border-radius:6px;background:rgba(17,18,21,.85);color:#fff;font:600 9.5px/1 var(--mono);letter-spacing:.08em;transition:opacity .35s ease}
 .tile.on::after{opacity:0}
-.tile{position:relative;flex:0 0 auto;width:min(66vw,280px);aspect-ratio:4/5;margin:0;border-radius:16px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 18px 36px -18px rgba(17,18,21,.45),inset 0 0 0 1px var(--line);transition:transform .25s ease,box-shadow .25s ease}
+.tile{position:relative;flex:0 0 auto;aspect-ratio:4/5;margin:0;border-radius:16px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 18px 36px -18px rgba(17,18,21,.45),inset 0 0 0 1px var(--line);transition:transform .25s ease,box-shadow .25s ease}
 .tile img{position:relative;z-index:1}
 @media (hover:hover){.tile:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 44px -18px rgba(17,18,21,.6)}}
 .tile img{width:100%;height:100%;object-fit:contain;padding:14px}
@@ -183,7 +190,8 @@ p{margin:0}
 .bonus-media{padding:0 20px 18px}
 .bonus-media img{border-radius:10px;border:1px solid var(--line);width:100%}
 .bonus-rail{padding-bottom:18px}
-.bonus-rail .tile{width:min(52vw,210px)}
+.bonus-rail{--cw:min(58vw,240px)}
+.bonus .car-ctl{padding-bottom:18px}
 .val{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:1px solid var(--line);background:var(--bg-2)}
 .val s{font:500 14px/1 var(--mono);color:var(--dim)}
 .val small{font:600 10.5px/1 var(--mono);letter-spacing:.1em;color:var(--dim);margin-right:8px}
@@ -286,7 +294,6 @@ footer .cmyk{margin-bottom:12px}
   .niches{grid-template-columns:1fr 1fr}
   .bonuses{grid-template-columns:1fr 1fr;align-items:start}
   .bonuses .total{grid-column:1 / -1}
-  .tile{width:300px}
   .sticky{display:none}
   footer{padding-bottom:40px}
 }
@@ -296,8 +303,8 @@ footer .cmyk{margin-bottom:12px}
   .big{font-size:100px}
 }
 @media (prefers-reduced-motion:reduce){
-  .ribbon-track,.track,.btn::after,.hero-top i{animation:none}
-  .rail{overflow-x:auto}
+  .ribbon-track,.btn::after,.hero-top i{animation:none}
+  .rail .tile{transition:none}
 }
 </style>
 
@@ -564,7 +571,7 @@ fbq('init','1608923080101822');fbq('track','PageView');
   var BG={"0RRdL5Pw_1-1538.webp":"w","0V28Y2bp_1-248.webp":"b","0yG4fQzP_wd-11.webp":"w","1G5x5M8r_1-103.webp":"w","1GpdC0RX_1-15.webp":"b","27yC3pX3_1-29.webp":"b","2YqjCrMS_1-34.webp":"w","35cYGwcx_1-9.webp":"w","3mQ9vRLS_1-752.webp":"b","3mVj7PWH_1-23.webp":"w","3yC5xchx_1-111.webp":"b","3ynyDrbN_1-33.webp":"b","4R2hxTXG_1-7.webp":"w","4Zd6gHHK_1-1374.webp":"w","4ZgTLgHh_wd-25.webp":"b","4n4RJz4K_1-24.webp":"b","4nty51F3_1-305.webp":"w","4w2XgmL9_1-1122.webp":"w","5XR1NL1Y_1-18.webp":"b","5XRHcxQj_11-14.webp":"b","5XTkppbv_wd-23.webp":"w","5XcR8nQc_1-177.webp":"w","5XksVV0Z_wd-19.webp":"w","5qh7x0n_1-12.webp":"w","5xFQ8YXx_1-839.webp":"b","5xRgTXch_1-4.webp":"b","67zxSWbk_11-17.webp":"b","6JqLJjYj_1-267.webp":"b","6Jy5kRbq_1-195.webp":"b","6ck6fhzX_1-1661.webp":"w","6cvpwrm0_11-8.webp":"b","7NbsX5ky_1-16.webp":"w","7t32zyb3_1-30.webp":"w","7xgTjnKy_1-3.webp":"b","84SxFNnk_1-24.webp":"w","8D0mGMpG_1-1334.webp":"b","8LN08xB6_1-837.webp":"w","8gMMD6Kj_1-18.webp":"b","934KXJtQ_wd-2.webp":"w","99Srxkjg_1-343.webp":"w","99xGqy31_1-39.webp":"w","9mrZQMVS_1-2.webp":"b","9mtWVdLq_11-3.webp":"b","B2Kksr8z_wd-13.webp":"w","B57Hjbbs_1-5.webp":"b","BK3Jh6bY_1-10.webp":"w","BVJyqfPn_wd-6.webp":"w","BVmnDFk7_1-255.webp":"w","C3gr6Bb5_1-12.webp":"w","DD1L4b6T_1-298.webp":"b","DH9PRct8_1-37.webp":"b","DHQmmtjM_1-22.webp":"b","DHd2PsL7_1-45.webp":"w","DgrTbxmK_1-1376.webp":"w","FL93gGQr_1-121.webp":"b","FLpNKTx1_1-107.webp":"w","FbVmNZn1_1-439.webp":"w","Fk9cysL3_1-1248.webp":"w","Fkqsy4ds_1-1359.webp":"w","Fq7bhLtV_1-20.webp":"b","G316qvxV_1-887.webp":"w","G3J0Bk12_1-1269.webp":"w","G4L2McKG_1-38.webp":"b","G4YDTFnY_1-8.webp":"w","G4zQyHf5_1-295.webp":"w","GQMfn7y1_11-9.webp":"b","GQWMj0DJ_1-36.webp":"b","GQZYh7T3_1-1591.webp":"b","GvhHYSvC_1-32.webp":"b","HLZmZ6Fz_1-15.webp":"b","HLrbNrF5_1-16.webp":"w","JhKMKsr_1-263.webp":"b","Jjzt7Tst_1-756.webp":"b","JwB1nQJ2_wd-20.webp":"w","JwGm9w2k_1-24.webp":"b","JwS8vvFH_1-7.webp":"w","JwXgndpJ_1-10.webp":"b","JwwQTz29_1-10.webp":"b","KjCB4Ymn_1-18.webp":"b","KpG7QJXW_wd-12.webp":"b","Kx6mTk2g_1-31.webp":"b","KxLPmpG2_1-8.webp":"w","KzWrBB0C_1-16.webp":"b","LD2p8fMw_1-11.webp":"w","LTmFS9c_11-11.webp":"b","LXCbB277_1-20.webp":"b","LXHC0fFv_1-2.webp":"w","LXrY1S5f_1-84.webp":"w","LdfZmqrC_1-61.webp":"w","LhNMh49j_1-21.webp":"b","LzhDYk72_1-13.webp":"b","M57RrsH8_1-31.webp":"b","MxgWBsh9_1-28.webp":"w","Myt2rsqq_1-254.webp":"w","Myt354ND_1-16.webp":"w","N2Z3Ryv3_wd-8.webp":"w","N6BxkgvY_1-3.webp":"b","Nd6Cy9K8_1-24.webp":"b","NdjdptMZ_1-40.webp":"b","NgKZHCPD_1-8.webp":"b","NgvyH1cF_11-20.webp":"b","NnKT2LJg_1-39.webp":"b","NnLFRwL6_1-41.webp":"w","PRqRBnG_wd-17.webp":"b","PZ9RgZjs_1-1060.webp":"b","PZQ0QCLc_1-477.webp":"b","PsN81pk5_1-23.webp":"w","Pvf6PykY_wd-21.webp":"w","Q33QnzVQ_11-16.webp":"b","Q79fQ4bT_wd-3.webp":"b","QFZb60z7_1-119.webp":"w","QvTNv8nV_11-19.webp":"b","R4S527Wm_1-36.webp":"w","RTVQDqNt_1-1075.webp":"b","RTpHZcMK_1-41.webp":"b","S4rm5fsH_1-1112.webp":"b","S7xsdj1y_11-21.webp":"b","S847Kvt_1-1523.webp":"w","SXCqHWvy_1-1247.webp":"w","SXDHX1vt_1-25.webp":"b","SXLqvf6r_1-14.webp":"b","TBD3LtM0_1-3.webp":"b","V6W5GtH_1-1408.webp":"b","VGcpYpy_1-1211.webp":"b","VWCkBH9G_1-21.webp":"b","VWNtjT5V_1-32.webp":"b","VcbwgSvj_1-17.webp":"b","VpJ4RWTK_11-15.webp":"b","VpNJDMFv_wd-4.webp":"w","VpNk1BxC_1-21.webp":"b","WT9RcG4_1-1821.webp":"w","WW1dkNm7_11-5.webp":"b","Wp6vDRCb_wd-5.webp":"w","Xf1MYZ5D_11-12.webp":"b","XrD4fvnn_1-1100.webp":"w","Xx7Ssznn_1-1373.webp":"b","XxJ664Lt_wd-9.webp":"w","XxNVG8B2_1-1.webp":"b","YBNHTqWS_wd-18.webp":"w","YBxF3Qpb_1-11.webp":"b","YFNKzTnz_1-7.webp":"w","ZZHgC0f_1-6.webp":"b","ZvN2pKk_1-1.webp":"b","ZyvT2HC_1-15.webp":"b","Zz17dxD1_1-35.webp":"b","Zz4h8jMM_1-19.webp":"b","Zz5C9KRz_1-14.webp":"b","ZzBP60xq_1-461.webp":"b","ZzZQKkDf_1-19.webp":"b","b50QS3VZ_11-2.webp":"b","b5JtLTN4_11-7.webp":"b","bMnyKVML_1-162.webp":"w","bjZRQ6SZ_1-7.webp":"w","cSGR7f2Z_1-20.webp":"b","d07S5zSM_1-37.webp":"w","ds7yS36f_1-28.webp":"b","dw7ftG4t_1-4.webp":"b","dwZztRLG_1-44.webp":"b","fGVGLNLC_1-540.webp":"w","fVSSXMvt_1-1218.webp":"b","fdB8FZsX_wd-7.webp":"w","fz4PGDxj_1-27.webp":"w","fzgz82bb_1-1339.webp":"b","gFZsVW5c_wd-26.webp":"w","gL2xnB99_1-1505.webp":"w","gLNXJmVx_1-131.webp":"w","gb3LX0XD_1-105.webp":"b","hJ6jPfvf_1-26.webp":"b","hJxJ2XRZ_1-14.webp":"b","hxC2trsD_1-281.webp":"b","hxHSXYRM_1-42.webp":"w","hxcdSGzz_1-25.webp":"b","jPPy0tkJ_1-1322.webp":"w","jZDg8cQ1_1-26.webp":"b","jkGrnbsG_1-6.webp":"w","k2zYVnFt_1-38.webp":"b","kV4XkchL_1-33.webp":"b","kVkCBQHj_1-5.webp":"b","kk7td6C_1-98.webp":"b","mFXJcNZy_1-12.webp":"b","mFrxJq2L_1-9.webp":"w","mMffDfQ_1-1518.webp":"w","mVsTDtvZ_1-40.webp":"b","mVydtNGW_1-1410.webp":"w","mr8RDfNS_1-4.webp":"w","mrqMrCyk_1-13.webp":"w","n8kW5XJw_1-660.webp":"b","n8nMxxYG_1-5.webp":"b","n8zVV0Wk_1-1115.webp":"b","nMVBrgTr_1-13.webp":"b","nMdnV9Bn_1-42.webp":"w","ns07scrp_1-179.webp":"w","nsmrqGTS_1-1065.webp":"b","pB6VFTZj_1-109.webp":"w","pBpMM4K9_1-43.webp":"b","pv2CmzZz_wd-22.webp":"w","qMfSYG5Z_1-1595.webp":"b","qYHmpJP9_11-4.webp":"b","qhTQpYn_11-13.webp":"b","r2H0skcQ_1-12.webp":"b","r2sm2wqk_wd-10.webp":"w","rGwvjT51_1-1.webp":"b","rRB5vXLH_11-18.webp":"b","rf2pgnYw_1-2111.webp":"w","rf5Wrvrn_wd-15.webp":"b","rrm4Sy3_1-23.webp":"w","s99j2PDH_1-531.webp":"w","s9CyKGst_1-17.webp":"b","s9W76W5t_1-11.webp":"b","sp89kCTP_1-35.webp":"w","spRwjRwK_1-734.webp":"w","svTkhr3F_1-803.webp":"b","svbthcyj_1-817.webp":"w","t6gykdm_1-1325.webp":"b","tPXsCfLC_11-10.webp":"b","tw9r2jtC_1-1063.webp":"b","twzNzhkf_1-623.webp":"w","v6ckPzNg_1-620.webp":"b","vCNfdnmp_1-6.webp":"b","vxXqT8VP_1-30.webp":"w","vxwR8bHc_1-1370.webp":"b","wFK5pMVC_1-164.webp":"b","wFqcfGXG_1-1415.webp":"b","wZZn6CcX_11-6.webp":"b","wrp1ZY9k_1-2.webp":"w","wtMqrfB_1-17.webp":"b","x8BKF89q_1-29.webp":"w","xqfFjm2r_11-1.webp":"b","xtv6T5kz_1-14.webp":"w","yBdfXWX8_1-25.webp":"w","yFd3X1D1_1-19.webp":"b","yFqNXp3C_wd-24.webp":"w","yGrgx2G_1-23.webp":"b","ym4mXp3k_1-22.webp":"b","ymJTspm7_wd-16.webp":"w","ynw8vsW7_1-34.webp":"b","yzV76bv_1-175.webp":"w","zT2KFXtK_1-733.webp":"w","zTSqjYCC_1-1366.webp":"w","zTkyf9cR_1-27.webp":"w","zVzd7Jjq_1-1336.webp":"w","zWJ1xDgM_1-1526.webp":"w","zh7rY52L_1-9.webp":"w","zhwtS52b_1-22.webp":"b"};
   function tiles(list,label){
     var h="";
-    list.concat(list).forEach(function(p){
+    list.forEach(function(p){
       var file=p.split("/")[1], key=p.replace("/","_").replace(".png",".webp");
       h+='<figure class="tile '+(BG[key]||"b")+'"><img loading="lazy" decoding="async" alt="'+label+' design '+file+'" src="images/'+p.replace("/","_").replace(".png",".webp")+'"><figcaption><b>'+file+'</b><span>300 DPI</span></figcaption></figure>';
     });
@@ -574,10 +581,28 @@ fbq('init','1608923080101822');fbq('track','PageView');
     var rows=PACKS[sec.dataset.pack], tr=sec.querySelectorAll(".track"), name=sec.querySelector("h3").textContent;
     var all=rows[0].concat(rows[1]);
     tr[0].innerHTML=tiles(all,name);
-    tr[0].style.setProperty("--dur",(all.length*4)+"s");
-    if(sec.dataset.pack%2===0) tr[0].parentNode.classList.add("rev");
   });
-  var bt=document.getElementById("bonus-track");bt.innerHTML=tiles(TRENDS,"Trend");bt.style.setProperty("--dur",(TRENDS.length*3.5)+"s");
+  document.getElementById("bonus-track").innerHTML=tiles(TRENDS,"Trend");
+
+  // Carousels: auto-advance every 2.5s through every design, loop, pause after the visitor swipes
+  var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".rail").forEach(function(rail){
+    var items=[].slice.call(rail.querySelectorAll(".tile")),idx=0,hold=0,visible=false,raf=0;
+    var ctl=document.createElement("div");ctl.className="car-ctl";
+    ctl.innerHTML='<button type="button" aria-label="Previous design">‹</button><span class="car-n" aria-live="polite"></span><button type="button" aria-label="Next design">›</button>';
+    rail.after(ctl);
+    var num=ctl.querySelector(".car-n"),total=String(items.length);
+    function mark(i){items.forEach(function(t,k){t.classList.toggle("cur",k===i)});num.innerHTML="<b>"+String(i+1).padStart(2,"0")+"</b> / "+total}
+    function go(i,smooth){idx=(i+items.length)%items.length;var t=items[idx];rail.scrollTo({left:t.offsetLeft-(rail.clientWidth-t.offsetWidth)/2,behavior:smooth===false?"auto":"smooth"});mark(idx)}
+    function nearest(){var c=rail.scrollLeft+rail.clientWidth/2,b=0,d=1e9;items.forEach(function(t,k){var m=Math.abs(t.offsetLeft+t.offsetWidth/2-c);if(m<d){d=m;b=k}});return b}
+    rail.addEventListener("scroll",function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){idx=nearest();mark(idx)})},{passive:true});
+    ["pointerdown","touchstart","wheel"].forEach(function(ev){rail.addEventListener(ev,function(){hold=Date.now()+6000},{passive:true})});
+    ctl.children[0].addEventListener("click",function(){hold=Date.now()+6000;go(idx-1)});
+    ctl.children[2].addEventListener("click",function(){hold=Date.now()+6000;go(idx+1)});
+    if("IntersectionObserver" in window)new IntersectionObserver(function(en){visible=en[0].isIntersecting}).observe(rail);else visible=true;
+    mark(0);
+    if(!still)setInterval(function(){if(visible&&Date.now()>hold&&!document.hidden)go(idx+1)},2500);
+  });
 
   // Tap a design to see it on its black or white ground (tap again for the PNG checkerboard)
   document.addEventListener("click",function(e){var t=e.target.closest(".tile");if(t)t.classList.toggle("on")});
